@@ -1,0 +1,33 @@
+.button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  /* width: 15em; */
+  width: 13em;
+  /* height: 3.5em; */
+  height: 3em;
+  /* font-size: 1em; */
+  /* font-size: 1rem; */
+  font-size: large;
+  font-weight: 700;
+  font-family: inherit;
+  //background-color: #1a1a1a;
+  background-color: white;
+  color: #3d3d3d;
+  cursor: pointer;
+  transition: border-color 0.25s;
+  border-radius: 2em;
+}
+.button:hover {
+  /* border-color: #646cff; */
+  background-color: #ff8c00;
+  color: white;
+}
+.button:active {
+  background: white;
+  color: #3d3d3d;
+}
+
+/* .button:focus,
+.button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+} */

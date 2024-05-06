@@ -1,0 +1,12 @@
+.home {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2em;
+}
+
+.home_text {
+  /* margin: 2em; */
+  font-size: 1.4rem;
+}

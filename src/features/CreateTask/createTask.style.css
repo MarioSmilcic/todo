@@ -1,0 +1,25 @@
+.createTask {
+  font-size: 1.4rem;
+  /* gap: 3em; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+}
+
+.input {
+  margin: 2em;
+  border-radius: 2em;
+  border: 1px solid transparent;
+  width: 30em;
+  height: 3.5em;
+  background-color: #dadada;
+}
+.input::placeholder {
+  font-size: 1.2rem;
+  font-weight: 900;
+  color: #a6a6a6;
+  display: flex;
+  text-indent: 1em;
+}
