@@ -19,6 +19,7 @@ const Navigation = () => {
 
   const handleNavigate = () => {
     navigate("/");
+    setShowModal(false);
   };
 
   const { tasks } = useTasksStore();
@@ -45,7 +46,8 @@ const Navigation = () => {
         {!showModal && <Hamburger onModal={handleModal} />}
         {showModal && <Close onClose={handleModal} />}
       </div>
-      {showModal && <NavModal />}
+      {/* {showModal && <NavModal onNavModal={handleModal} />} */}
+      {showModal && <NavModal onNavModal={handleModal} />}
     </div>
   );
 };
