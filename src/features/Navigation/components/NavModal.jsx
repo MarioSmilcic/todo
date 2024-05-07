@@ -2,11 +2,11 @@ import "../navigation.style.css";
 import { Link } from "react-router-dom";
 import { useTasksStore } from "../../../store/tasks/tasks.store";
 
-const NavModal = () => {
+const NavModal = ({ onNavModal }) => {
   const { tasks } = useTasksStore();
 
   return (
-    <div className="nav_modal">
+    <div className="nav_modal" onClick={onNavModal}>
       <Link to={{ pathname: "/" }}>Početna</Link>
       <Link to={{ pathname: "/createTask" }}>Kreiraj Task</Link>
       <Link to={{ pathname: "/taskList" }}>
