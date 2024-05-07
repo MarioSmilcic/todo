@@ -5,7 +5,6 @@ const About = () => {
   return (
     <div className="about">
       <Logo color="#dadada" width="240px" />
-      {/* <h1>About</h1> */}
       <p>
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente, non
         vel commodi suscipit adipisci sint delectus nam fugiat dolores vero!

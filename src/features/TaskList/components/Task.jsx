@@ -4,7 +4,8 @@ const Task = ({ task }) => {
   return (
     <div className="task">
       <div className="task_info">
-        <input type="radio" name="radio" id="task" />
+        <input type="radio" name="radio" />
+        {/* <input type="radio" /> */}
         <label htmlFor="task"></label>
         <p>{task}</p>
       </div>

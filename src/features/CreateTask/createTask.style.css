@@ -1,4 +1,4 @@
-.createTask {
+.create_task {
   font-size: 1.4rem;
   /* gap: 3em; */
   display: flex;
@@ -22,4 +22,30 @@
   color: #a6a6a6;
   display: flex;
   text-indent: 1em;
+}
+
+@media (max-width: 768px) {
+  .create_task {
+    font-size: 1.2rem;
+  }
+  .input {
+    width: 24em;
+    height: 3em;
+  }
+  .input::placeholder {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .create_task {
+    font-size: 1rem;
+  }
+  .input {
+    width: 16em;
+    height: 2.5em;
+  }
+  .input::placeholder {
+    font-size: 0.8rem;
+  }
 }

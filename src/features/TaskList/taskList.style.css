@@ -80,4 +80,33 @@ h3 {
   width: 2em;
   height: 2em;
   margin: 8px;
+  accent-color: #7ed957;
+}
+
+@media (max-width: 576px) {
+  .task_about {
+    font-size: 1.2rem;
+  }
+  .tasks_number {
+    width: 3em;
+    height: 3em;
+    font-size: 1.8rem;
+  }
+  .task {
+    width: 18em;
+  }
+}
+
+@media (max-width: 400px) {
+  .task_about {
+    font-size: 1rem;
+  }
+  .tasks_number {
+    width: 2.5em;
+    height: 2.5em;
+    font-size: 1.5rem;
+  }
+  .task {
+    width: 15em;
+  }
 }
