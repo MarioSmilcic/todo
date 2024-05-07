@@ -1,0 +1,10 @@
+.close {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .close {
+    display: flex;
+    margin: 0 1.5em;
+  }
+}
