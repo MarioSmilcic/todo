@@ -83,6 +83,10 @@ h3 {
   accent-color: #7ed957;
 }
 
+.task_KeepGoing {
+  display: none;
+}
+
 @media (max-width: 576px) {
   .task_about {
     font-size: 1.2rem;

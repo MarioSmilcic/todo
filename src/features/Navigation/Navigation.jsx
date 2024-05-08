@@ -46,7 +46,6 @@ const Navigation = () => {
         {!showModal && <Hamburger onModal={handleModal} />}
         {showModal && <Close onClose={handleModal} />}
       </div>
-      {/* {showModal && <NavModal onNavModal={handleModal} />} */}
       {showModal && <NavModal onNavModal={handleModal} />}
     </div>
   );
