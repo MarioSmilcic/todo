@@ -1,20 +1,28 @@
 .create_task {
   font-size: 1.4rem;
-  /* gap: 3em; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 1em;
+  gap: 2em;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2em;
 }
 
 .input {
-  margin: 2em;
   border-radius: 2em;
   border: 1px solid transparent;
-  width: 30em;
-  height: 3.5em;
+  width: 21em;
+  height: 2.5em;
   background-color: #dadada;
+  text-indent: 1em;
+  font-size: 1.2rem;
 }
 .input::placeholder {
   font-size: 1.2rem;
@@ -29,8 +37,10 @@
     font-size: 1.2rem;
   }
   .input {
-    width: 24em;
-    height: 3em;
+    /* width: 24em; */
+    width: 18em;
+    /* height: 3em; */
+    height: 2.3em;
   }
   .input::placeholder {
     font-size: 1rem;
@@ -42,8 +52,8 @@
     font-size: 1rem;
   }
   .input {
-    width: 16em;
-    height: 2.5em;
+    width: 15em;
+    height: 1.8em;
   }
   .input::placeholder {
     font-size: 0.8rem;

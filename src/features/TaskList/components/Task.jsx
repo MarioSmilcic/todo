@@ -1,6 +1,9 @@
 import "../taskList.style.css";
+import { useTasksStore } from "../../../store/tasks/tasks.store";
 
-const Task = ({ task }) => {
+const Task = ({ task, id }) => {
+  const { removeTask } = useTasksStore();
+
   return (
     <div className="task">
       <div className="task_info">
@@ -18,6 +21,7 @@ const Task = ({ task }) => {
         <img
           src="https://cdn-icons-png.freepik.com/256/7092/7092142.png?ga=GA1.1.175313777.1710781203&semt=ais_hybrid"
           alt="Delete"
+          onClick={() => removeTask(id)}
         />
       </div>
     </div>
