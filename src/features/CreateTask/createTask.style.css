@@ -23,6 +23,7 @@
   background-color: #dadada;
   text-indent: 1em;
   font-size: 1.2rem;
+  outline-color: #7ed957;
 }
 .input::placeholder {
   font-size: 1.2rem;

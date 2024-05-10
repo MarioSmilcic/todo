@@ -18,6 +18,7 @@ const CreateTask = () => {
     const newTask = {
       task: enteredTask,
       id: Math.random(),
+      isCompleted: false,
     };
 
     enteredTask.trim().length > 0 && addTask(newTask);
