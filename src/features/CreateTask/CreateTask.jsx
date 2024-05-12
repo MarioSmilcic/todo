@@ -36,6 +36,7 @@ const CreateTask = () => {
             placeholder="Upiši..."
             value={enteredTask}
             onChange={handleEnteredTask}
+            id={Math.random()}
           />
         </div>
         <Button text="Sačuvaj" />
