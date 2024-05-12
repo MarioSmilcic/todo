@@ -14,14 +14,28 @@ export const useTasksStore = create((set) => ({
       tasks: state.tasks.filter((task) => task.id !== taskId),
     })),
 
+  // markAsCompleted: (taskId) =>
+  //   set((state) => ({
+  //     tasks: state.tasks.map((task) => {
+  //       if (task.id === taskId) {
+  //         return { ...task, isCompleted: !task.isCompleted };
+  //       } else {
+  //         return task;
+  //       }
+  //     }),
+  //   })),
+
   markAsCompleted: (taskId) =>
     set((state) => ({
-      tasks: state.tasks.map((task) => {
-        if (task.id === taskId) {
-          return { ...task, isCompleted: !task.isCompleted };
-        } else {
-          return task;
-        }
-      }),
+      tasks: state.tasks.map((task) =>
+        task.id === taskId ? { ...task, isCompleted: !task.isCompleted } : task
+      ),
+    })),
+
+  updateTask: (updatedTask) =>
+    set((state) => ({
+      tasks: state.tasks.map((task) =>
+        task.id === updatedTask.id ? { ...task, ...updatedTask } : task
+      ),
     })),
 }));
