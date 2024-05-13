@@ -23,8 +23,9 @@
 }
 
 .update_title {
-  background-color: #2c3d50;
-  padding: 1em;
+  /* background-color: #2c3d50; */
+  background-color: #7ed957;
+  padding: 1em 0;
 }
 
 .modal_input {

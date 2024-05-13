@@ -85,11 +85,28 @@ h3 {
 
 /* CHECKBOX*/
 
-.task_info__input {
+/* .task_info__input {
   width: 2em;
   height: 2em;
   margin: 8px;
   accent-color: #7ed957;
+} */
+
+.task_info__input {
+  margin-right: 8px;
+  width: 2em;
+  height: 2em;
+  background-color: white;
+  border-radius: 50%;
+  vertical-align: middle;
+  border: 2px solid #7ed957;
+  appearance: none;
+  outline: #7ed957;
+  cursor: pointer;
+}
+.task_info__input:checked {
+  background-color: #7ed957;
+  border: 2px solid white;
 }
 
 .task_KeepGoing {
