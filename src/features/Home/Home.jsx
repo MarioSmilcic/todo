@@ -15,7 +15,7 @@ const Home = () => {
         <h2>Šta planiraš danas?</h2>
         <h2>Kreiraj svoj novi task!</h2>
       </div>
-      <Button text="Kreiraj" onNavigate={() => handleNavigate()} />
+      <Button text="Kreiraj" handleClick={handleNavigate} />
       {/* <button onClick={() => handleNavigate()}>Otvori</button> */}
     </div>
   );

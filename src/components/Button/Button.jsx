@@ -1,13 +1,13 @@
 import "./button.style.css";
 
-const Button = ({ text, onNavigate }) => {
+const Button = ({ text, handleClick }) => {
   return (
-    // <div className="button">
-    // <button>{text}</button>
-    <button onClick={onNavigate} className="button">
+    <button
+      onClick={handleClick}
+      className={`button ${text === "Dismiss" && "button_dismiss"}`}
+    >
       {text}
     </button>
-    // </div>
   );
 };
 

@@ -1,105 +1,92 @@
 import "../taskList.style.css";
 import { useTasksStore } from "../../../store/tasks/tasks.store";
 import { useState } from "react";
+import Backdrop from "../../Modals/Backdrop";
+import EditModal from "../../Modals/EditModal";
+import DeleteModal from "../../Modals/DeleteModal";
 
 const Task = ({ task, id, isCompleted }) => {
   const [isChecked, setisChecked] = useState(isCompleted);
-  const [isEditing, setisEditing] = useState(false);
-  const [enteredTask, setEnteredTask] = useState(task);
 
-  const { removeTask, markAsCompleted, updateTask } = useTasksStore();
+  const [backdrop, setBackdrop] = useState(null);
+  const [editModal, setEditModal] = useState(null);
+  const [deleteModal, setDeleteModal] = useState(null);
+
+  const { markAsCompleted } = useTasksStore();
 
   const handleMarkTask = () => {
     markAsCompleted(id);
     setisChecked(!isChecked);
   };
 
-  const handleEnteredTask = (e) => {
-    setEnteredTask(e.target.value);
+  const handleModal = () => {
+    setBackdrop(true);
+    setEditModal(true);
   };
 
-  const handleUpdateClick = () => {
-    setisEditing(!isEditing);
+  const handleCloseModal = () => {
+    setBackdrop(false);
+    setEditModal(false);
+    setDeleteModal(false);
   };
 
-  const handleUpdate = (e) => {
-    e.preventDefault();
-
-    const updatedTask = {
-      task: enteredTask,
-      id: id,
-      isCompleted: isCompleted,
-    };
-
-    if (enteredTask.trim().length > 0) {
-      updateTask(updatedTask);
-      setisEditing(!isEditing);
-    } else {
-      setisEditing(true);
-    }
+  const handleDeleteModal = () => {
+    setBackdrop(true);
+    setDeleteModal(true);
   };
+
+  const editTask = { task, id, isCompleted };
 
   return (
-    <div className="task">
-      <div className="task_info">
-        <input
-          type="checkbox"
-          className="task_info__input"
-          id={id}
-          value="isChecked"
-          checked={isChecked}
-          onChange={handleMarkTask}
-        />
+    <>
+      <div className="task">
+        <div className="task_info">
+          <input
+            type="checkbox"
+            className="task_info__input"
+            id={id}
+            value="isChecked"
+            checked={isChecked}
+            onChange={handleMarkTask}
+          />
 
-        {isEditing ? (
-          <div>
-            <form onSubmit={handleUpdate} name="update">
-              <input
-                type="text"
-                className="edit_input"
-                value={enteredTask}
-                id={id}
-                onChange={handleEnteredTask}
-                autoFocus
-              />
-            </form>
-          </div>
-        ) : (
-          <p>{task}</p>
-        )}
-      </div>
+          <p className={`${isChecked && "task_checked"}`}>{task}</p>
+        </div>
 
-      <div className="task_images">
-        <img
-          src="https://cdn-icons-png.freepik.com/256/4203/4203611.png?ga=GA1.1.175313777.1710781203&semt=ais_hybrid"
-          alt="Edit"
-          onClick={handleUpdateClick}
-        />
-        <img
-          src="https://cdn-icons-png.freepik.com/256/7092/7092142.png?ga=GA1.1.175313777.1710781203&semt=ais_hybrid"
-          alt="Delete"
-          onClick={() => removeTask(id)}
-        />
+        <div className="task_images">
+          <img
+            src="https://cdn-icons-png.freepik.com/256/4203/4203611.png?ga=GA1.1.175313777.1710781203&semt=ais_hybrid"
+            alt="Edit"
+            onClick={handleModal}
+          />
+          <img
+            src="https://cdn-icons-png.freepik.com/256/7092/7092142.png?ga=GA1.1.175313777.1710781203&semt=ais_hybrid"
+            alt="Delete"
+            onClick={handleDeleteModal}
+          />
+        </div>
       </div>
-    </div>
+      {backdrop && <Backdrop onCancel={handleCloseModal} />}
+      {editModal && <EditModal task={editTask} onClose={handleCloseModal} />}
+      {deleteModal && (
+        <DeleteModal onClose={handleCloseModal} task={editTask} />
+      )}
+    </>
   );
 };
 
 export default Task;
 
-///SECOND SOLUTION////////
+////OLD SOLUTION////
 
 // import "../taskList.style.css";
 // import { useTasksStore } from "../../../store/tasks/tasks.store";
 // import { useState } from "react";
-// import Backdrop from "../../Modals/Backdrop";
-// import EditModal from "../../Modals/EditModal";
 
 // const Task = ({ task, id, isCompleted }) => {
 //   const [isChecked, setisChecked] = useState(isCompleted);
-
-//   const [backdrop, setBackdrop] = useState(null);
-//   const [editModal, setEditModal] = useState(null);
+//   const [isEditing, setisEditing] = useState(false);
+//   const [enteredTask, setEnteredTask] = useState(task);
 
 //   const { removeTask, markAsCompleted, updateTask } = useTasksStore();
 
@@ -108,50 +95,74 @@ export default Task;
 //     setisChecked(!isChecked);
 //   };
 
-//   const handleModal = () => {
-//     setBackdrop(true);
-//     setEditModal(true);
+//   const handleEnteredTask = (e) => {
+//     setEnteredTask(e.target.value);
 //   };
 
-//   const handleCloseModal = () => {
-//     setBackdrop(false);
-//     setEditModal(false);
+//   const handleUpdateClick = () => {
+//     setisEditing(!isEditing);
 //   };
 
-//   const editTask = { task, id, isCompleted };
+//   const handleUpdate = (e) => {
+//     e.preventDefault();
+
+//     const updatedTask = {
+//       task: enteredTask,
+//       id: id,
+//       isCompleted: isCompleted,
+//     };
+
+//     if (enteredTask.trim().length > 0) {
+//       updateTask(updatedTask);
+//       setisEditing(!isEditing);
+//     } else {
+//       setisEditing(true);
+//     }
+//   };
 
 //   return (
-//     <>
-//       <div className="task">
-//         <div className="task_info">
-//           <input
-//             type="checkbox"
-//             className="task_info__input"
-//             id={id}
-//             value="isChecked"
-//             checked={isChecked}
-//             onChange={handleMarkTask}
-//           />
+//     <div className="task">
+//       <div className="task_info">
+//         <input
+//           type="checkbox"
+//           className="task_info__input"
+//           id={id}
+//           value="isChecked"
+//           checked={isChecked}
+//           onChange={handleMarkTask}
+//         />
 
+//         {isEditing ? (
+//           <div>
+//             <form onSubmit={handleUpdate} name="update">
+//               <input
+//                 type="text"
+//                 className="edit_input"
+//                 value={enteredTask}
+//                 id={id}
+//                 onChange={handleEnteredTask}
+//                 autoFocus
+//               />
+//             </form>
+//           </div>
+//         ) : (
 //           <p>{task}</p>
-//         </div>
-
-//         <div className="task_images">
-//           <img
-//             src="https://cdn-icons-png.freepik.com/256/4203/4203611.png?ga=GA1.1.175313777.1710781203&semt=ais_hybrid"
-//             alt="Edit"
-//             onClick={handleModal}
-//           />
-//           <img
-//             src="https://cdn-icons-png.freepik.com/256/7092/7092142.png?ga=GA1.1.175313777.1710781203&semt=ais_hybrid"
-//             alt="Delete"
-//             onClick={() => removeTask(id)}
-//           />
-//         </div>
+//         )}
 //       </div>
-//       {backdrop && <Backdrop onCancel={handleCloseModal} />}
-//       {editModal && <EditModal task={editTask} onClose={handleCloseModal} />}
-//     </>
+
+//       <div className="task_images">
+//         <img
+//           src="https://cdn-icons-png.freepik.com/256/4203/4203611.png?ga=GA1.1.175313777.1710781203&semt=ais_hybrid"
+//           alt="Edit"
+//           onClick={handleUpdateClick}
+//         />
+//         <img
+//           src="https://cdn-icons-png.freepik.com/256/7092/7092142.png?ga=GA1.1.175313777.1710781203&semt=ais_hybrid"
+//           alt="Delete"
+//           onClick={() => removeTask(id)}
+//         />
+//       </div>
+//     </div>
 //   );
 // };
 
