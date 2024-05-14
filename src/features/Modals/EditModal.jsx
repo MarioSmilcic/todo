@@ -23,11 +23,13 @@ const EditModal = ({ task, onClose }) => {
 
     const updatedTask = {
       task: enteredTask,
-      id: task.id,
-      isCompleted: task.isCompleted,
+      // id: task.id,
+      // isCompleted: task.isCompleted,
     };
 
-    enteredTask.trim().length > 0 ? updateTask(updatedTask, onClose()) : null;
+    enteredTask.trim().length > 0
+      ? updateTask(task.id, updatedTask, onClose())
+      : null;
   };
 
   return (

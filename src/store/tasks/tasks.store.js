@@ -32,10 +32,29 @@ export const useTasksStore = create((set) => ({
       ),
     })),
 
-  updateTask: (updatedTask) =>
+  ///FIRST SOLUTION////
+  // updateTask: (updatedTask) =>
+  //   set((state) => ({
+  //     tasks: state.tasks.map((task) =>
+  //       task.id === updatedTask.id ? { ...task, ...updatedTask } : task
+  //     ),
+  //   })),
+
+  ///SECOND SOLUTION////
+
+  // updateTask: (updatedTask) =>
+  //   set((state) => ({
+  //     tasks: state.tasks.map((task) =>
+  //       task.id === updatedTask.id ? { ...task, ...updatedTask } : task
+  //     ),
+  //   })),
+
+  ///THIRD SOLUTION////
+
+  updateTask: (updateId, updatedTask) =>
     set((state) => ({
       tasks: state.tasks.map((task) =>
-        task.id === updatedTask.id ? { ...task, ...updatedTask } : task
+        task.id === updateId ? { ...task, ...updatedTask } : task
       ),
     })),
 }));
