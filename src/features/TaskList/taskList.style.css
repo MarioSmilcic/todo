@@ -76,17 +76,21 @@ h3 {
   margin-bottom: 3em;
 }
 
-/* .task_info input {
-  width: 2em;
-  height: 2em;
-  margin: 8px;
-  accent-color: #7ed957;
-} */
 .task_info__input {
+  margin-right: 8px;
   width: 2em;
   height: 2em;
-  margin: 8px;
-  accent-color: #7ed957;
+  background-color: white;
+  border-radius: 50%;
+  vertical-align: middle;
+  border: 2px solid #7ed957;
+  appearance: none;
+  outline: #7ed957;
+  cursor: pointer;
+}
+.task_info__input:checked {
+  background-color: #7ed957;
+  border: 2px solid white;
 }
 
 .task_KeepGoing {
@@ -103,6 +107,10 @@ h3 {
   text-indent: 1em;
   font-size: 1.2rem;
   outline-color: #7ed957;
+}
+
+.task_checked {
+  text-decoration: line-through;
 }
 
 @media (max-width: 576px) {

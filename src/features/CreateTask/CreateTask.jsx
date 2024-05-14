@@ -12,6 +12,8 @@ const CreateTask = () => {
     setEnteredTask(e.target.value);
   };
 
+  const handleNavigate = () => {};
+
   const submitHandler = (e) => {
     e.preventDefault();
 

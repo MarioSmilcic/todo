@@ -3,7 +3,6 @@
   border: 1px solid transparent;
   width: 13em;
   height: 3em;
-
   font-size: large;
   font-weight: 700;
   font-family: inherit;
@@ -13,23 +12,34 @@
   transition: border-color 0.25s;
   border-radius: 2em;
 }
+.button_dismiss {
+}
+
 .button:hover {
   background-color: #7ed957;
   color: white;
 }
-.button:active {
+.button_dismiss:hover {
+  background: red;
+  color: white;
+}
+
+.button:active,
+.button_dismis:active {
   background: white;
   color: #3d3d3d;
 }
 
 @media (max-width: 768px) {
-  .button {
+  .button,
+  .button_dismiss {
     font-size: medium;
   }
 }
 
 @media (max-width: 576px) {
-  .button {
+  .button,
+  .button_dismiss {
     font-size: small;
   }
 }
