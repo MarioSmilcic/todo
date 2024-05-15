@@ -54,6 +54,7 @@ const EditModal = ({ task, onClose, isSuccessUpdate }) => {
             onChange={handleEnteredTask}
             autoFocus
             className="modal_input"
+            maxLength={30}
           />
           <div className="buttons">
             <Button text="Confirm" />

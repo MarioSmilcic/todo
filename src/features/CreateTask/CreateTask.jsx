@@ -45,6 +45,7 @@ const CreateTask = () => {
             onChange={handleEnteredTask}
             id={Math.random()}
             autoFocus
+            maxLength={30}
           />
         </div>
         <Button text="Sačuvaj" />
