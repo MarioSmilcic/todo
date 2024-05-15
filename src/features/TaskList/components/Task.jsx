@@ -4,15 +4,23 @@ import { useState } from "react";
 import Backdrop from "../../Modals/Backdrop";
 import EditModal from "../../Modals/EditModal";
 import DeleteModal from "../../Modals/DeleteModal";
+import { Snackbar } from "@mui/material";
+import { Alert } from "@mui/material";
 
-const Task = ({ task, id, isCompleted }) => {
+const Task = ({ task, id, isCompleted, isSuccessDeleted }) => {
   const [isChecked, setisChecked] = useState(isCompleted);
 
   const [backdrop, setBackdrop] = useState(null);
   const [editModal, setEditModal] = useState(null);
   const [deleteModal, setDeleteModal] = useState(null);
 
+  const [isSuccessUpdate, setIsSuccessUpdate] = useState(false);
+
   const { markAsCompleted } = useTasksStore();
+
+  const handleClose = () => {
+    setIsSuccessUpdate(false);
+  };
 
   const handleMarkTask = () => {
     markAsCompleted(id);
@@ -67,10 +75,36 @@ const Task = ({ task, id, isCompleted }) => {
         </div>
       </div>
       {backdrop && <Backdrop onCancel={handleCloseModal} />}
-      {editModal && <EditModal task={editTask} onClose={handleCloseModal} />}
-      {deleteModal && (
-        <DeleteModal onClose={handleCloseModal} task={editTask} />
+      {/* {editModal && <EditModal task={editTask} onClose={handleCloseModal} />} */}
+      {editModal && (
+        <EditModal
+          task={editTask}
+          onClose={handleCloseModal}
+          isSuccessUpdate={() => setIsSuccessUpdate(true)}
+        />
       )}
+      {deleteModal && (
+        <DeleteModal
+          onClose={handleCloseModal}
+          task={editTask}
+          // isSuccessDeleted={() => setIsSuccessDeleted(true)}
+          isSuccessDeleted={isSuccessDeleted}
+        />
+      )}
+      <Snackbar
+        open={isSuccessUpdate}
+        autoHideDuration={3000}
+        onClose={handleClose}
+      >
+        <Alert
+          onClose={handleClose}
+          severity="info"
+          variant="filled"
+          sx={{ width: "100%" }}
+        >
+          Task successfully updated!
+        </Alert>
+      </Snackbar>
     </>
   );
 };
