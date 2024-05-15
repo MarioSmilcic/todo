@@ -4,10 +4,15 @@ import { useState } from "react";
 import { useTasksStore } from "../../store/tasks/tasks.store";
 import Button from "../../components/Button/Button";
 
-const EditModal = ({ task, onClose }) => {
+const EditModal = ({ task, onClose, isSuccessUpdate }) => {
   const [enteredTask, setEnteredTask] = useState(task.task);
 
   const { updateTask } = useTasksStore();
+
+  const handleModals = () => {
+    onClose();
+    isSuccessUpdate();
+  };
 
   const handleCloseModal = (e) => {
     e.preventDefault();
@@ -27,8 +32,12 @@ const EditModal = ({ task, onClose }) => {
       // isCompleted: task.isCompleted,
     };
 
+    // enteredTask.trim().length > 0
+    //   ? updateTask(task.id, updatedTask, onClose())
+    //   : null;
+
     enteredTask.trim().length > 0
-      ? updateTask(task.id, updatedTask, onClose())
+      ? updateTask(task.id, updatedTask) & handleModals()
       : null;
   };
 
@@ -48,7 +57,6 @@ const EditModal = ({ task, onClose }) => {
           />
           <div className="buttons">
             <Button text="Confirm" />
-            {/* <Button text="Dismiss" handleClick={() => onClose()} /> */}
             <Button text="Dismiss" handleClick={handleCloseModal} />
           </div>
         </form>

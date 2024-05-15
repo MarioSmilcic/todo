@@ -2,17 +2,21 @@ import Button from "../../components/Button/Button";
 import "./createTask.style.css";
 import { useTasksStore } from "../../store/tasks/tasks.store";
 import { useState } from "react";
+import { Snackbar } from "@mui/material";
+import { Alert } from "@mui/material";
 
 const CreateTask = () => {
   const [enteredTask, setEnteredTask] = useState("");
+  const [isSuccessAdded, setIsSuccessAdded] = useState(false);
 
   const { addTask } = useTasksStore();
 
   const handleEnteredTask = (e) => {
     setEnteredTask(e.target.value);
   };
-
-  const handleNavigate = () => {};
+  const handleClose = () => {
+    setIsSuccessAdded(false);
+  };
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -25,6 +29,7 @@ const CreateTask = () => {
 
     enteredTask.trim().length > 0 && addTask(newTask);
     setEnteredTask("");
+    setIsSuccessAdded(true);
   };
 
   return (
@@ -44,6 +49,21 @@ const CreateTask = () => {
         </div>
         <Button text="Sačuvaj" />
       </form>
+
+      <Snackbar
+        open={isSuccessAdded}
+        autoHideDuration={3000}
+        onClose={handleClose}
+      >
+        <Alert
+          onClose={handleClose}
+          severity="success"
+          variant="filled"
+          sx={{ width: "100%" }}
+        >
+          Task successfully added!
+        </Alert>
+      </Snackbar>
     </div>
   );
 };
