@@ -23,10 +23,11 @@ const CreateTask = () => {
       isCompleted: false,
     };
 
-    enteredTask.trim().length > 0 && addTask(newTask);
-    setEnteredTask("");
-
-    setNotifcation(true, "Task je uspješno kreiran!", "success");
+    if (enteredTask.length > 0) {
+      addTask(newTask);
+      setEnteredTask("");
+      setNotifcation(true, "Task je uspješno kreiran!", "success");
+    }
   };
 
   return (
