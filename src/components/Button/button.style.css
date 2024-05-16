@@ -12,7 +12,9 @@
   transition: border-color 0.25s;
   border-radius: 2em;
 }
-.button_dismiss {
+.button_dismiss,
+.button_confirm {
+  font-size: medium;
 }
 
 .button:hover {
