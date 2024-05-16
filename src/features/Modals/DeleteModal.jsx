@@ -2,13 +2,16 @@ import "./modals.style.css";
 import Button from "../..//components/Button/Button";
 import { useTasksStore } from "../../store/tasks/tasks.store";
 import Card from "./components/Card";
+import { useNotificationStore } from "../../store/notification/notification.store";
 
-const DeleteModal = ({ task, onClose, isSuccessDeleted }) => {
+const DeleteModal = ({ task, onClose }) => {
   const { removeTask } = useTasksStore();
 
+  const setNotifcation = useNotificationStore((state) => state.setNotification);
+
   const handleDelete = () => {
-    isSuccessDeleted();
     removeTask(task.id);
+    setNotifcation(true, "Task je uspješno obrisan!", "info");
   };
 
   return (
