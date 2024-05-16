@@ -2,20 +2,16 @@ import Button from "../../components/Button/Button";
 import "./createTask.style.css";
 import { useTasksStore } from "../../store/tasks/tasks.store";
 import { useState } from "react";
-import { Snackbar } from "@mui/material";
-import { Alert } from "@mui/material";
+import { useNotificationStore } from "../../store/notification/notification.store";
 
 const CreateTask = () => {
   const [enteredTask, setEnteredTask] = useState("");
-  const [isSuccessAdded, setIsSuccessAdded] = useState(false);
 
   const { addTask } = useTasksStore();
+  const setNotifcation = useNotificationStore((state) => state.setNotification);
 
   const handleEnteredTask = (e) => {
     setEnteredTask(e.target.value);
-  };
-  const handleClose = () => {
-    setIsSuccessAdded(false);
   };
 
   const submitHandler = (e) => {
@@ -29,7 +25,8 @@ const CreateTask = () => {
 
     enteredTask.trim().length > 0 && addTask(newTask);
     setEnteredTask("");
-    setIsSuccessAdded(true);
+
+    setNotifcation(true, "Task je uspješno kreiran!", "success");
   };
 
   return (
@@ -50,21 +47,6 @@ const CreateTask = () => {
         </div>
         <Button text="Sačuvaj" />
       </form>
-
-      <Snackbar
-        open={isSuccessAdded}
-        autoHideDuration={3000}
-        onClose={handleClose}
-      >
-        <Alert
-          onClose={handleClose}
-          severity="success"
-          variant="filled"
-          sx={{ width: "100%" }}
-        >
-          Task successfully added!
-        </Alert>
-      </Snackbar>
     </div>
   );
 };

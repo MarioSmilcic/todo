@@ -3,15 +3,18 @@ import Card from "./components/Card";
 import { useState } from "react";
 import { useTasksStore } from "../../store/tasks/tasks.store";
 import Button from "../../components/Button/Button";
+import { useNotificationStore } from "../../store/notification/notification.store";
 
-const EditModal = ({ task, onClose, isSuccessUpdate }) => {
+const EditModal = ({ task, onClose }) => {
   const [enteredTask, setEnteredTask] = useState(task.task);
 
   const { updateTask } = useTasksStore();
 
+  const setNotifcation = useNotificationStore((state) => state.setNotification);
+
   const handleModals = () => {
     onClose();
-    isSuccessUpdate();
+    setNotifcation(true, "Task je uspješno editovan!", "info");
   };
 
   const handleCloseModal = (e) => {
@@ -28,17 +31,12 @@ const EditModal = ({ task, onClose, isSuccessUpdate }) => {
 
     const updatedTask = {
       task: enteredTask,
-      // id: task.id,
-      // isCompleted: task.isCompleted,
     };
 
-    // enteredTask.trim().length > 0
-    //   ? updateTask(task.id, updatedTask, onClose())
-    //   : null;
-
-    enteredTask.trim().length > 0
-      ? updateTask(task.id, updatedTask) & handleModals()
-      : null;
+    if ((enteredTask.length > 0) & (task.task !== enteredTask)) {
+      updateTask(task.id, updatedTask);
+      handleModals();
+    }
   };
 
   return (

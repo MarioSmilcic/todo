@@ -4,7 +4,6 @@
   left: 0;
   display: flex;
   justify-content: center;
-  /* align-items: center; */
   width: 100%;
   text-align: center;
   padding: 20px 0;
@@ -56,7 +55,6 @@ a.active {
 }
 
 .nav_modal {
-  /* color: black; */
   display: none;
 }
 

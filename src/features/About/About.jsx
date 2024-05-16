@@ -1,26 +1,32 @@
-import Logo from "../../components/Logo/Logo";
 import "./about.style.css";
+import Profile from "../../assets/profile2Cropped.png";
 
 const About = () => {
   return (
     <div className="about">
-      <Logo color="#dadada" width="240px" />
+      <div className="about_info">
+        <div>
+          <img src={Profile} alt="profilna" className="about_profile" />
+          <h2>Mario Smilcic</h2>
+        </div>
+        <div>
+          <div>
+            <h3>Koristene tehnologije</h3>
+            <ul>
+              <li>React Js</li>
+              <li>React Router</li>
+              <li>Zustand</li>
+              <li>MUI</li>
+              <li>Git</li>
+              <li>GitHub</li>
+            </ul>
+          </div>
+        </div>
+      </div>
       <p>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente, non
-        vel commodi suscipit adipisci sint delectus nam fugiat dolores vero!
-      </p>
-      <p>
-        Soluta cum eaque, animi quam delectus porro explicabo sunt neque minus
-        iure facilis. Voluptates fugiat placeat neque, libero perspiciatis esse.
-      </p>
-      <p>
-        At, beatae, provident autem illum distinctio earum, omnis tempore vero
-        nulla dolore impedit perspiciatis quis. Quae unde ipsa quaerat veniam.
-      </p>
-      <p>
-        Optio ipsam quod labore, totam consectetur fugit cum ratione nostrum
-        inventore quia voluptates ipsum ullam magnam eum asperiores impedit
-        eveniet.
+        Aplikacija Todo je napravljena u ReactJs biblioteci. Radi se o CRUD
+        aplikaciji koja moze dodavati nove taskove, ucitati ih, mijenjati i
+        brisati. Klikom na dugme novi task, dodajemo novi todo.
       </p>
     </div>
   );
