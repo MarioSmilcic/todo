@@ -1,9 +1,10 @@
 import "./about.style.css";
-import Profile from "../../assets/profile2Cropped.png";
+import Profile from "../../assets/profile.png";
 
 const About = () => {
   return (
     <div className="about">
+      <h1 className="about_title">O nama</h1>
       <div className="about_info">
         <div>
           <img src={Profile} alt="profilna" className="about_profile" />
@@ -23,11 +24,25 @@ const About = () => {
           </div>
         </div>
       </div>
-      <p>
-        Aplikacija Todo je napravljena u ReactJs biblioteci. Radi se o CRUD
-        aplikaciji koja moze dodavati nove taskove, ucitati ih, mijenjati i
-        brisati. Klikom na dugme novi task, dodajemo novi todo.
-      </p>
+      <div className="about_text">
+        <p>
+          Aplikacija Todo je napravljena u programskom jeziku JavaScript i
+          biblioteci React. Za promjenu stranica koristena je bibilioteka React
+          Router. Aplikacija je responzivna, a za styling je koristen Vanilla
+          Css.
+        </p>
+        <p>
+          Radi se o CRUD aplikaciji koja moze dodavati nove taskove, ucitati ih,
+          mijenjati i brisati. Ako na pocetnoj stranici kliknemo "Kreiraj"
+          bicemo proslijedjeni na stranicu "Kreiraj Task". Kada u polju "Upisi"
+          unesemo novi task i kliknemo "Sacuvaj" pojavice se modal sa porukom
+          "Task je uspjesno kreiran". Na stranici "Lista taskova" mozemo vidjeti
+          sve unesene taskove. Pored svakog unesenog taska nalazi se krug, cijim
+          klikom oznacavamo da je task zavrsen. Ako kliknemo ikonu "edit" ili
+          'delete' otvorice se modal u kojem mozemo mijenjati, odnosno brisati
+          task, a dugmetom za potvrdu, task ce biti editovan, odnosno obrisan.
+        </p>
+      </div>
     </div>
   );
 };
