@@ -1,77 +1,64 @@
-import "../taskList.style.css";
-import { useTasksStore } from "../../../store/tasks/tasks.store";
 import { useState } from "react";
-import Backdrop from "../../Modals/Backdrop";
-import EditModal from "../../Modals/EditModal";
-import DeleteModal from "../../Modals/DeleteModal";
+import { motion } from "framer-motion";
+import EditIcon from "../../../components/icons/EditIcon";
+import DeleteIcon from "../../../components/icons/DeleteIcon";
+import { useTasksStore } from "../../../store/tasks/tasks.store";
+import { useModalsStore } from "../../../store/modals/modals.store";
+import "../taskList.style.css";
+import { taskVariants } from "../../../utils/animations/variants";
 
 const Task = ({ task, id, isCompleted }) => {
-  const [isChecked, setisChecked] = useState(isCompleted);
-
-  const [backdrop, setBackdrop] = useState(null);
-  const [editModal, setEditModal] = useState(null);
-  const [deleteModal, setDeleteModal] = useState(null);
-
+  const [isChecked, setIsChecked] = useState(isCompleted);
   const { markAsCompleted } = useTasksStore();
+  const { showModal } = useModalsStore();
 
   const handleMarkTask = () => {
     markAsCompleted(id);
-    setisChecked(!isChecked);
+    setIsChecked(!isChecked);
   };
 
-  const handleModal = () => {
-    setBackdrop(true);
-    setEditModal(true);
-  };
-
-  const handleCloseModal = () => {
-    setBackdrop(false);
-    setEditModal(false);
-    setDeleteModal(false);
-  };
-
-  const handleDeleteModal = () => {
-    setBackdrop(true);
-    setDeleteModal(true);
-  };
-
-  const editTask = { task, id, isCompleted };
+  const taskData = { task, id, isCompleted };
 
   return (
-    <>
-      <div className="task">
-        <div className="task_info">
-          <input
-            type="checkbox"
-            className="task_info__input"
-            id={id}
-            value="isChecked"
-            checked={isChecked}
-            onChange={handleMarkTask}
-          />
-
-          <p className={`${isChecked && "task_checked"}`}>{task}</p>
-        </div>
-
-        <div className="task_images">
-          <img
-            src="https://cdn-icons-png.freepik.com/256/4203/4203611.png?ga=GA1.1.175313777.1710781203&semt=ais_hybrid"
-            alt="Edit"
-            onClick={handleModal}
-          />
-          <img
-            src="https://cdn-icons-png.freepik.com/256/7092/7092142.png?ga=GA1.1.175313777.1710781203&semt=ais_hybrid"
-            alt="Delete"
-            onClick={handleDeleteModal}
-          />
-        </div>
+    <motion.div
+      className="task"
+      variants={taskVariants}
+      whileHover={{ scale: 1.02, backgroundColor: "rgba(166, 166, 166, 0.3)" }}
+      whileTap={{ scale: 0.98 }}
+    >
+      <div className="task_info">
+        <motion.input
+          type="checkbox"
+          className="task_info__input"
+          id={id}
+          checked={isChecked}
+          onChange={handleMarkTask}
+          whileHover={{ scale: 1.2 }}
+          whileTap={{ scale: 0.9 }}
+        />
+        <motion.p
+          className={isChecked ? "task_checked" : ""}
+          initial={{ color: "rgba(255, 255, 255, 1)" }}
+          animate={{
+            color: isChecked
+              ? "rgba(255, 255, 255, 0.5)"
+              : "rgba(255, 255, 255, 1)",
+          }}
+          transition={{ duration: 0.2 }}
+        >
+          {task}
+        </motion.p>
       </div>
-      {backdrop && <Backdrop onCancel={handleCloseModal} />}
-      {editModal && <EditModal task={editTask} onClose={handleCloseModal} />}
-      {deleteModal && (
-        <DeleteModal onClose={handleCloseModal} task={editTask} />
-      )}
-    </>
+
+      <div className="task_images">
+        <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+          <EditIcon onClick={() => showModal("edit", taskData)} />
+        </motion.div>
+        <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+          <DeleteIcon onClick={() => showModal("delete", taskData)} />
+        </motion.div>
+      </div>
+    </motion.div>
   );
 };
 

@@ -2,9 +2,9 @@ import { create } from "zustand";
 
 export const useTasksStore = create((set) => ({
   tasks: [
-    { id: 1, task: "Hello Wordl!", isCompleted: true },
-    { id: 2, task: "Hello Wordl!", isCompleted: true },
-    { id: 3, task: "Hello Wordl!", isCompleted: false },
+    { id: 1, task: "Hello World!", isCompleted: true },
+    { id: 2, task: "Hello World!", isCompleted: true },
+    { id: 3, task: "Hello World!", isCompleted: false },
   ],
 
   addTask: (newTask) => set((state) => ({ tasks: [...state.tasks, newTask] })),

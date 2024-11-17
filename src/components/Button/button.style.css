@@ -6,42 +6,44 @@
   font-size: large;
   font-weight: 700;
   font-family: inherit;
-  background-color: white;
-  color: #3d3d3d;
+  background-color: #7ed957;
+  color: white;
   cursor: pointer;
   transition: border-color 0.25s;
   border-radius: 2em;
 }
-.button_dismiss,
-.button_confirm {
-  font-size: medium;
-}
 
 .button:hover {
-  background-color: #7ed957;
-  color: white;
-}
-.button_dismiss:hover {
-  background: red;
-  color: white;
+  background-color: white;
+  color: #3d3d3d;
 }
 
-.button:active,
-.button_dismis:active {
+.button:active {
   background: white;
   color: #3d3d3d;
 }
 
+.delete-modal .modal_title {
+  background-color: #ff3130;
+}
+
+.delete-modal .button_confirm {
+  background-color: #ff3130;
+}
+
+.delete-modal .button_confirm:hover {
+  background-color: white;
+  color: #ff3130;
+}
+
 @media (max-width: 768px) {
-  .button,
-  .button_dismiss {
+  .button {
     font-size: medium;
   }
 }
 
 @media (max-width: 576px) {
-  .button,
-  .button_dismiss {
+  .button {
     font-size: small;
   }
 }

@@ -6,26 +6,37 @@
   justify-content: center;
   width: 100%;
   text-align: center;
-  padding: 20px 0;
+  padding: 10px 0;
   background-color: #ffffff;
+  z-index: 200;
 }
 
 .navigation a {
-  color: #2c3d50;
-  font-weight: light;
+  color: #002332;
+  font-weight: 500;
   font-size: 1.4rem;
+  text-decoration: inherit;
+  transition: color 0.3s ease;
 }
 
-.navigation a:hover,
-a.active {
+.links a {
+  padding: 10px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.links a:hover,
+.links a.active {
   color: #7ed957;
+  background-color: rgba(126, 217, 87, 0.1);
 }
 
-.navigation svg {
-  position: absolute;
-  left: 25px;
-  top: 7px;
-  cursor: pointer;
+.nav_svg {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 25px;
 }
 
 .links {
@@ -40,54 +51,76 @@ a.active {
   position: absolute;
   background-color: #ff3130;
   color: white;
-
   border-radius: 50%;
   width: 30px;
   height: 30px;
-
   font-size: small;
   display: flex;
   align-items: center;
   justify-content: center;
-
-  margin-top: -46px;
-  margin-left: 132px;
+  margin-top: -47px;
+  margin-left: 82px;
 }
 
 .nav_modal {
   display: none;
 }
 
+.nav_modal_header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.nav_modal.open {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100vh;
+  background-color: #ffffff;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  z-index: 400;
+}
+
+.nav_modal a {
+  text-align: left;
+  padding: 10px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.nav_modal a:hover {
+  background-color: rgba(126, 217, 87, 0.1);
+}
+
 @media (max-width: 768px) {
   .links {
     display: none;
   }
+
   .nav_svg {
-    display: flex;
     justify-content: space-between;
-    align-items: center;
+    padding: 0 20px;
   }
 
   .navigation {
     padding: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
   }
+
   .navigation a {
     font-size: 1.2rem;
   }
 
-  .navigation svg {
-    position: static;
-    display: flex;
-    margin: 0 1em;
+  .tasks_status {
+    margin-left: 150px;
   }
-  .nav_modal {
+
+  .close {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 1em;
+    margin: 0 1.5em;
   }
 }
