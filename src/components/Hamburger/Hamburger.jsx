@@ -1,21 +1,55 @@
+import { motion } from "framer-motion";
 import "./hamburger.style.css";
 
 const Hamburger = ({ onModal }) => {
+  const linePath1 = "M 5 10 L 45 10";
+  const linePath2 = "M 5 25 L 45 25";
+  const linePath3 = "M 5 40 L 45 40";
+
+  const lineProps = {
+    stroke: "#2c3d50",
+    strokeWidth: "4",
+    strokeLinecap: "round",
+    vectorEffect: "non-scaling-stroke",
+  };
+
+  const pathTransitions = {
+    transition: { duration: 0.3 },
+  };
+
   return (
-    <div className="hamburger">
+    <motion.div
+      className="hamburger"
+      whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 0.95 }}
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        x="0px"
-        y="0px"
-        width="32px"
-        height="32px"
         viewBox="0 0 50 50"
-        fill="#2c3d50"
+        width="32"
+        height="32"
         onClick={onModal}
       >
-        <path d="M 0 7.5 L 0 12.5 L 50 12.5 L 50 7.5 L 0 7.5 z M 0 22.5 L 0 27.5 L 50 27.5 L 50 22.5 L 0 22.5 z M 0 37.5 L 0 42.5 L 50 42.5 L 50 37.5 L 0 37.5 z"></path>
+        <motion.path
+          d={linePath1}
+          {...lineProps}
+          whileHover={{ y: -1 }}
+          {...pathTransitions}
+        />
+        <motion.path
+          d={linePath2}
+          {...lineProps}
+          whileHover={{ x: 2 }}
+          {...pathTransitions}
+        />
+        <motion.path
+          d={linePath3}
+          {...lineProps}
+          whileHover={{ y: 1 }}
+          {...pathTransitions}
+        />
       </svg>
-    </div>
+    </motion.div>
   );
 };
 

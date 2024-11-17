@@ -38,9 +38,7 @@
     font-size: 1.2rem;
   }
   .input {
-    /* width: 24em; */
     width: 18em;
-    /* height: 3em; */
     height: 2.3em;
   }
   .input::placeholder {

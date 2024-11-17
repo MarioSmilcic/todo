@@ -6,12 +6,12 @@ import { useNavigate } from "react-router-dom";
 import Hamburger from "../../components/Hamburger/Hamburger";
 import NavModal from "./components/NavModal";
 import { useState } from "react";
-import Close from "../../components/Close/Close";
+import { navigationLinks } from "../../data/app-data";
 
 const Navigation = () => {
   const [showModal, setShowModal] = useState(false);
-
   const navigate = useNavigate();
+  const { tasks } = useTasksStore();
 
   const handleModal = () => {
     setShowModal(!showModal);
@@ -22,29 +22,23 @@ const Navigation = () => {
     setShowModal(false);
   };
 
-  const { tasks } = useTasksStore();
-
   return (
     <div className="navigation">
       <div className="nav_svg">
-        <Logo
-          color="#2c3d50"
-          width="54px"
-          onNavigate={() => handleNavigate()}
-        />
+        <Logo color="#002332" width="54px" onNavigate={handleNavigate} />
         <div className="links">
-          <Link to={{ pathname: "/" }}>Početna</Link>
-          <Link to={{ pathname: "/createTask" }}>Kreiraj Task</Link>
-          <Link to={{ pathname: "/taskList" }}>
-            Lista taskova
-            <span className={tasks.length > 0 ? "tasks_status" : null}>
-              {tasks.length > 0 && tasks.length}
-            </span>
-          </Link>
-          <Link to={{ pathname: "/about" }}>O nama</Link>
+          {navigationLinks.map((link) => (
+            <Link key={link.id} to={link.to}>
+              {link.text}
+              {link.showStatus && (
+                <span className={tasks.length > 0 ? "tasks_status" : null}>
+                  {tasks.length > 0 && tasks.length}
+                </span>
+              )}
+            </Link>
+          ))}
         </div>
         {!showModal && <Hamburger onModal={handleModal} />}
-        {showModal && <Close onClose={handleModal} />}
       </div>
       {showModal && <NavModal onNavModal={handleModal} />}
     </div>

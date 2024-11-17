@@ -1,10 +1,25 @@
 .hamburger {
   display: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  background-color: transparent;
+  transition: background-color 0.3s ease;
+}
+
+.hamburger:hover {
+  background-color: rgba(126, 217, 87, 0.1);
+}
+
+.hamburger svg {
+  display: block;
 }
 
 @media (max-width: 768px) {
   .hamburger {
     display: flex;
+    align-items: center;
+    justify-content: center;
     margin: 0 1.5em;
   }
 }
